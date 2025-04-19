@@ -1,0 +1,6 @@
+<nav>
+    <a [routerLink]="['/login']">Login</a>
+    <a [routerLink]="['/register']">Register</a>
+    <a [routerLink]="['/recipes']">Recipes</a>
+    <button *ngIf="isAuthenticated()" (click)="logout()">Logout</button>
+  </nav>

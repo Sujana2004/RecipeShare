@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <form id="registerForm" action="http://localhost:5000/api/auth/register" method="POST">
+      <input type="text" name="username" id="username" placeholder="Username" required />
+      <input type="email" name="email" id="email" placeholder="Email" required />
+      <input type="password" name="password" id="password" placeholder="Password" required />
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="index.html">Login here</a></p>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();  // Prevent form submission
+      
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // const userData = { username, email, password };
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include', 
+          body: JSON.stringify({
+            username: username, 
+            email: email, 
+            password: password
+          }),
+        });
+        
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('Registration successful');
+          window.location.href = 'index.html';  // Redirect to login page after successful registration
+        } else {
+          alert(result.message || 'Registration failed');
+        }
+      } catch (err) {
+        console.error('Error during registration:', err);
+        alert('An error occurred during registration');
+      }
+    });
+  </script>
+</body>
+</html>

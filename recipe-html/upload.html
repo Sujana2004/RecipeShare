@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Recipe - Recipe Share</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Upload a Recipe</h1>
+    <nav>
+      <a href="home.html">Home</a> |
+      <a href="upload.html">Upload Recipe</a>
+    </nav>
+    <hr />
+  </header>
+
+  <main>
+    <div class="form-container">
+      <h2>Recipe Upload Form</h2>
+      <form id="recipe-form" enctype="multipart/form-data">
+        <label for="title">Recipe Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="Dessert">Dessert</option>
+          <option value="Main Course">Main Course</option>
+          <option value="Appetizer">Appetizer</option>
+        </select>
+
+        <label for="file">Upload File (image/audio/video)</label>
+        <input type="file" id="file" name="file">
+
+        <button type="submit">Upload Recipe</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Recipe Share</p>
+  </footer>
+
+  <script>
+    // Handle form submission for uploading a recipe
+    document.getElementById('recipe-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append('title', document.getElementById('title').value);
+      formData.append('description', document.getElementById('description').value);
+      formData.append('category', document.getElementById('category').value);
+      formData.append('file', document.getElementById('file').files[0]);
+
+      fetch('http://localhost:5000/api/recipes/upload', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include', 
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Recipe uploaded successfully!');
+        window.location.href = 'home.html'; 
+      })
+      .catch(error => {
+        console.error('Error uploading recipe:', error);
+        alert('Failed to upload recipe');
+      });
+    });
+  </script>
+</body>
+</html>

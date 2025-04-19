@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Recipe List</h2>
+
+  <div class="search-box">
+    <input type="text" [(ngModel)]="category" placeholder="Search by category..." />
+    <button (click)="searchByCategory()">Search</button>
+  </div>
+
+  <div class="recipe-grid">
+    <div class="card" *ngFor="let recipe of filteredRecipes">
+      <h3>{{ recipe.title }}</h3>
+      <p>{{ recipe.description }}</p>
+
+      <div *ngIf="recipe.fileUrl">
+        <img *ngIf="recipe.fileUrl.endsWith('.jpg') || recipe.fileUrl.endsWith('.png')" [src]="'http://localhost:5000' + recipe.fileUrl" alt="Recipe Image" />
+        
+        <audio *ngIf="recipe.fileUrl.endsWith('.mp3') || recipe.fileUrl.endsWith('.wav')" controls>
+          <source [src]="'http://localhost:5000' + recipe.fileUrl" />
+        </audio>
+
+        <video *ngIf="recipe.fileUrl.endsWith('.mp4')" controls width="250">
+          <source [src]="'http://localhost:5000' + recipe.fileUrl" />
+        </video>
+      </div>
+
+      <small>Category: {{ recipe.category }}</small>
+      <br />
+      <small>Uploaded by: {{ recipe.createdBy.username }}</small>
+    </div>
+  </div>
+</div>

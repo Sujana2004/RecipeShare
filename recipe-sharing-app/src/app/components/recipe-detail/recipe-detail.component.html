@@ -1,0 +1,7 @@
+<div *ngIf="recipe">
+  <h2>{{ recipe.title }}</h2>
+  <p><strong>Category:</strong> {{ recipe.category }}</p>
+  <p><strong>Ingredients:</strong> {{ recipe.ingredients.join(', ') }}</p>
+  <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+  <p><strong>File:</strong>{{recipe.File}}</p>
+</div>

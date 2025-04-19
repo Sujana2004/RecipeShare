@@ -1,0 +1,34 @@
+<div>
+    <h2>Add Recipe</h2>
+    <form (ngSubmit)="addRecipe()">
+      <input type="text" [(ngModel)]="recipe.title" name="title" placeholder="Title" required />
+      <textarea [(ngModel)]="recipe.instructions" name="instructions" placeholder="Instructions" required></textarea>
+      <input type="text" [(ngModel)]="recipe.category" name="category" placeholder="Category" required />
+      <input type="text" [(ngModel)]="recipe.ingredients" name="ingredients" placeholder="Ingredients (comma separated)" required />
+      <input type="file" [(ngModel)]="recipe.file" name="file" placeholder="File" />
+      <button type="submit">Add Recipe</button>
+    </form>
+  </div>
+
+  <!-- <div>
+    <h2>Add New Recipe</h2>
+    <form (ngSubmit)="addRecipe()">
+      <div>
+        <label for="name">Recipe Name:</label>
+        <input type="text" id="name" [(ngModel)]="name" name="name" required />
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="description" name="description" required></textarea>
+      </div>
+      <div>
+        <label>Ingredients:</label>
+        <div *ngFor="let ingredient of ingredients; let i = index">
+          <input type="text" [(ngModel)]="ingredients[i]" name="ingredient{{i}}" required />
+        </div>
+        <button type="button" (click)="addIngredient()">Add Ingredient</button>
+      </div>
+      <button type="submit">Submit Recipe</button>
+    </form>
+    <button routerLink="/recipes">Cancel</button>
+  </div> -->

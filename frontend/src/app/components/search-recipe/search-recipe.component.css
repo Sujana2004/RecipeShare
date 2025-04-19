@@ -1,0 +1,29 @@
+.container {
+    padding: 20px;
+  }
+  
+  .recipe-card {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .recipe-card h3 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .recipe-card p {
+    margin: 8px 0;
+  }
+  
+  .recipe-card a {
+    color: #007bff;
+  }
+  
+  .recipe-card a:hover {
+    text-decoration: underline;
+  }
+  

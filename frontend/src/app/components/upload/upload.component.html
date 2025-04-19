@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Upload Recipe</h2>
+
+  <form (ngSubmit)="uploadRecipe()">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="title" name="title" required />
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="description" name="description" required></textarea>
+    </div>
+
+    <div>
+      <label for="category">Category:</label>
+      <input type="text" id="category" [(ngModel)]="category" name="category" required />
+    </div>
+
+    <div>
+      <label for="file">File:</label>
+      <input type="file" id="file" (change)="onFileChange($event)" required />
+    </div>
+
+    <button type="submit">Upload Recipe</button>
+  </form>
+</div>
